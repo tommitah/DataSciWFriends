@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.model_selection import train_test_split
@@ -32,41 +33,39 @@ scores_lasso = []
 for alpha in alphas:
     ridge_reg = Ridge(alpha=alpha).fit(X_train, y_train)
     lasso_reg = Lasso(alpha=alpha).fit(X_train, y_train)
-    y_train_pred_ridge = ridge_reg.predict(X_train)
-    y_train_pred_lasso = lasso_reg.predict(X_train)
-    scores_ridge.append(r2_score(y_train, y_train_pred_ridge))
-    scores_lasso.append(r2_score(y_train, y_train_pred_lasso))
+    # r2 score is computed with testing data
+    # because it is supposed to test the model.
+    # model is trained on the training data -> naturally it
+    # fits the training data.
+    # r2 is computed with testing data to get a more realistic
+    # estimate of the model's performance on unseen data.
+    y_test_pred_ridge = ridge_reg.predict(X_test)
+    y_test_pred_lasso = lasso_reg.predict(X_test)
+    scores_ridge.append(r2_score(y_test, y_test_pred_ridge))
+    scores_lasso.append(r2_score(y_test, y_test_pred_lasso))
+
+best_index_ridge = np.argmax(scores_ridge)
+best_index_lasso = np.argmax(scores_lasso)
+
+best_alpha_ridge = alphas[best_index_ridge]
+best_alpha_lasso = alphas[best_index_lasso]
 
 # NOTE: 6.
 plt.plot(alphas, scores_ridge)
 plt.title('Ridge regression, training data R2 to alpha.')
 plt.xlabel('alphas')
 plt.ylabel('r2 score')
+plt.savefig('ridge.pdf')
 plt.show()
+
 plt.plot(alphas, scores_lasso)
 plt.title('Lasso regression, training data R2 to alpha.')
 plt.xlabel('alphas')
 plt.ylabel('r2 score')
+plt.savefig('lasso.pdf')
 plt.show()
 
-
-# lasso_reg = Lasso(alpha=alpha)
-# lasso_reg.fit(X_train, y_train)
-
-#####
-# 2. Setup multiple regression X and y to predict 'mpg(miles per gallon)'
-# of cars using all the variables except 'mpg', 'name' and 'origin'
-#
-# 3. split data into training and testing sets (80/20 split)
-#
-# 4. Implement both ridge regression and LASSO regression using
-# several values for alpha.
-#
-# 5. Search optimal value for alpha (in terms of R2 score) by fitting the
-# models with training data and computing the score using testing data
-#
-# 6. Plot the R2 scores for both regressons as functions of alpha
-#
-# 7. Identify, as accurately as you can, the value for alpha
-# which gives the best score
-#####
+print('Best alpha for ridge: {}, with R2: {}'.format(
+    alphas[best_index_ridge], scores_ridge[best_index_ridge]))
+print('Best alpha for lasso: {}, with R2: {}'.format(
+    alphas[best_index_lasso], scores_lasso[best_index_lasso]))
