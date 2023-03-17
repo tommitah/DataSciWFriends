@@ -1,0 +1,25 @@
+Learning 'diary' - AI course - Tommi Tahvanainen
+
+This isn't as much a learning diary, since I only found the requirement for a diary
+when I was in the latter half of the course. I also have absolutely no idea what a learning diary
+is supposed to entail, so here goes. I'll talk a bit about how it was working on this and that'll be that.
+
+Starting off from the intro to data science, I was a bit worried this course wouldn't have a lot
+of actual 'AI' content, that is to say machine learning/neural networks and the works. I was glad that
+my years spent doing linear algebra at school weren't a complete waste and drawing graphs was good fun.
+
+The part with the videos was a nice change of pace, most of the videos were interesting, well produced
+and even entertaining. I had no idea AlphaGo was a thing but I can't say it was a surprise that we
+already have an AI that beats the best players in Go.
+
+Chapters 4-6 started challenging my number crunching muscles, since the problems started to be hard
+to reason about with simple algebra. Regression was interesting, although I feel like the data sets were
+a bit boring, weirdly sanitized and at some point I wished the values for some calculation could've been
+checked somewhere. Providing the correct answers helps us learn, since we won't necessarily know if we
+went wrong somewhere without them.
+
+By the last two chapters the exercises had started to get a bit repetitive. It was cool to utilize
+the scalers, I think this is something that would be really useful in almost any business context.
+
+All in all, not the worst course I've ever done. Points for not using the 'programming exercise' functionality
+that is mostly always a pain in the ass, and not conducive to learning in any way.
